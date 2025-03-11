@@ -5,56 +5,53 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Member {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
-  @Column(name = "member_id")
-  private Long id;
-  private String name;
-  private String city;
-  private String street;
-  private String zipcode;
+  private Long memberId;
 
-  public Long id() {
-    return id;
+  @OneToMany(mappedBy = "member")
+  private List<Order> orders = new ArrayList<>();
+
+  @Column(name = "user_name")
+  private String userName;
+
+  @ManyToOne
+  @JoinColumn(name = "team_id",insertable = false, updatable = false)
+  private Team team;
+
+  public Long memberId() {
+    return memberId;
   }
 
-  public void setId(Long id) {
-    this.id = id;
+  public void setMemberId(Long memberId) {
+    this.memberId = memberId;
   }
 
-  public String name() {
-    return name;
+  public String userName() {
+    return userName;
   }
 
-  public void setName(String name) {
-    this.name = name;
+  public void setUserName(String userName) {
+    this.userName = userName;
   }
 
-  public String city() {
-    return city;
-  }
 
-  public void setCity(String city) {
-    this.city = city;
-  }
 
-  public String street() {
-    return street;
-  }
-
-  public void setStreet(String street) {
-    this.street = street;
-  }
-
-  public String zipcode() {
-    return zipcode;
-  }
-
-  public void setZipcode(String zipcode) {
-    this.zipcode = zipcode;
+  @Override
+  public String toString() {
+    return "Member{" +
+        "memberId=" + memberId +
+        ", userName='" + userName + '\'' +
+//        ", team=" + team +
+        '}';
   }
 }

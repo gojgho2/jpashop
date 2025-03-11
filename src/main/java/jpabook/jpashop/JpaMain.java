@@ -4,6 +4,10 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
+import jpabook.jpashop.domain.Member;
+import jpabook.jpashop.domain.Order;
+import jpabook.jpashop.domain.OrderItem;
+import jpabook.jpashop.domain.Team;
 
 public class JpaMain {
 
@@ -16,6 +20,17 @@ public class JpaMain {
     tx.begin();
 
     try {
+
+      Member member = new Member();
+
+      member.setUserName("go1");
+      em.persist(member);
+
+      Team team = new Team();
+      team.setName("teamA");
+      team.members().add(member);
+      em.persist(team);
+
 
       tx.commit();
     } catch (Exception e) {
