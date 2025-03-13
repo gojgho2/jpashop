@@ -5,14 +5,12 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Member {
+public class Member extends BaseEntity{
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
@@ -24,9 +22,11 @@ public class Member {
   @Column(name = "user_name")
   private String userName;
 
-  @ManyToOne
-  @JoinColumn(name = "team_id",insertable = false, updatable = false)
-  private Team team;
+  private String city;
+
+  private String street;
+
+  private String zipcode;
 
   public Long memberId() {
     return memberId;
@@ -34,6 +34,14 @@ public class Member {
 
   public void setMemberId(Long memberId) {
     this.memberId = memberId;
+  }
+
+  public List<Order> orders() {
+    return orders;
+  }
+
+  public void setOrders(List<Order> orders) {
+    this.orders = orders;
   }
 
   public String userName() {
@@ -44,14 +52,27 @@ public class Member {
     this.userName = userName;
   }
 
+  public String city() {
+    return city;
+  }
 
+  public void setCity(String city) {
+    this.city = city;
+  }
 
-  @Override
-  public String toString() {
-    return "Member{" +
-        "memberId=" + memberId +
-        ", userName='" + userName + '\'' +
-//        ", team=" + team +
-        '}';
+  public String street() {
+    return street;
+  }
+
+  public void setStreet(String street) {
+    this.street = street;
+  }
+
+  public String zipcode() {
+    return zipcode;
+  }
+
+  public void setZipcode(String zipcode) {
+    this.zipcode = zipcode;
   }
 }

@@ -4,10 +4,12 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
+import java.time.LocalDateTime;
+import jpabook.jpashop.domain.Book;
+import jpabook.jpashop.domain.Item;
 import jpabook.jpashop.domain.Member;
-import jpabook.jpashop.domain.Order;
-import jpabook.jpashop.domain.OrderItem;
-import jpabook.jpashop.domain.Team;
+import jpabook.jpashop.domain.Movie;
+
 
 public class JpaMain {
 
@@ -21,16 +23,12 @@ public class JpaMain {
 
     try {
 
-      Member member = new Member();
+      Book book = new Book();
 
-      member.setUserName("go1");
-      em.persist(member);
+      book.setName("JPA");
+      book.setAuthor("김영한");
 
-      Team team = new Team();
-      team.setName("teamA");
-      team.members().add(member);
-      em.persist(team);
-
+      em.persist(book);
 
       tx.commit();
     } catch (Exception e) {

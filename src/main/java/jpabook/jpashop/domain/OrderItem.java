@@ -8,57 +8,12 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 @Entity
-public class OrderItem {
+public class OrderItem extends BaseEntity {
 
   @Id
   @GeneratedValue
   @Column(name = "order_item_id")
   private Long id;
-
-//  @Column(name = "order_id")
-//  private Long orderId;
-
-//  private Long itemId;
-
-  public Long id() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-  public Order order() {
-    return order;
-  }
-
-  public void setOrder(Order order) {
-    this.order = order;
-  }
-
-  public Item item() {
-    return item;
-  }
-
-  public void setItem(Item item) {
-    this.item = item;
-  }
-
-  public int orderPrice() {
-    return orderPrice;
-  }
-
-  public void setOrderPrice(int orderPrice) {
-    this.orderPrice = orderPrice;
-  }
-
-  public int count() {
-    return count;
-  }
-
-  public void setCount(int count) {
-    this.count = count;
-  }
 
   @ManyToOne
   @JoinColumn(name = "order_id")
@@ -68,8 +23,9 @@ public class OrderItem {
   @JoinColumn(name = "item_id")
   private Item item;
 
-
   private int orderPrice;
 
   private int count;
+
+
 }
